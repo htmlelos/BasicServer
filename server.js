@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const Common = require('./src/common/controller')
 const User = require('./src/user/controller')
@@ -18,6 +19,7 @@ mongoose.connect('mongodb://localhost/musica', function(err) {
 
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
+server.use(cors())
 
 server.get('/', Common.ping())
 
@@ -30,18 +32,4 @@ server.post('/users', User.createUser())
 server.listen(port, function() {
     console.log('Servidor ejecutandose en el puerto ' + port);
 })
-
-function createUser() {
-    return function (req, res) {
-        const newUser = req.body;
-        console.log('NEW_USER', req.body);
-        const user = new User(newUser);
-        user.save(function (err) {
-            if (err) {
-                res.status(401).json({ success: false });
-            }
-            res.status(200).json({ success: true });
-        });
-    };
-}
 
