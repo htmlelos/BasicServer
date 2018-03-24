@@ -12,7 +12,7 @@ const port = process.env.REST_PORT||3000;
 mongoose.connect('mongodb://localhost/musica', function(err) {
     if (err) {
         console.log('No puedo conectar a la base de datos')
-        process.exit()
+        process.exit(1)
     }
     console.log('Base de datos conectada')
 })
@@ -23,7 +23,7 @@ server.use(cors())
 
 server.get('/', Common.ping())
 
-server.get('/users', User.listUser())
+server.post('/users', User.listUser())
 
 server.get('/users/:userId', User.getUser())
 
