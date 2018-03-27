@@ -2,8 +2,7 @@ const User = require('./model')
 
 function listUser() {
     return function (req, res) {
-        const { fields } = req.body
-        console.log('FIELDS', fields);
+        const { fields } = req.body    
         User.find({}).select(fields).exec(
             function (err, users) {
                 if (err) {
