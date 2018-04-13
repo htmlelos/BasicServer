@@ -27,7 +27,7 @@ server.post('/users', User.listUser())
 
 server.get('/users/:userId', User.getUser())
 
-server.post('/users', User.createUser())
+// server.post('/user', User.createUser())
 
 server.listen(port, function() {
     console.log('Servidor ejecutandose en el puerto ' + port);
