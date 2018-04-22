@@ -26,8 +26,9 @@ server.get('/', Common.ping())
 server.post('/users', User.listUser())
 
 server.get('/users/:userId', User.getUser())
-
-// server.post('/user', User.createUser())
+server.post('/user', User.createUser())
+server.put('/users/:userId', User.updateUser())
+server.delete('/users/:userId', User.deleteUser())
 
 server.listen(port, function() {
     console.log('Servidor ejecutandose en el puerto ' + port);
