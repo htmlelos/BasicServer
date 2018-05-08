@@ -1,7 +1,7 @@
 const User = require('./model')
 
-function listUser() {
-  return function (req, res) {
+const listUser = () => {
+  return (req, res) => {
     const {fields} = req.body
     User
       .find({})
@@ -11,8 +11,8 @@ function listUser() {
   };
 }
 
-function getUser() {
-  return function (req, res) {
+const getUser = () =>  {
+  return (req, res)  => {
     const { userId } = req.params;
     User
       .findById(userId, 'name password email')
@@ -21,8 +21,8 @@ function getUser() {
   };
 }
 
-function createUser() {
-  return function (req, res) {
+const createUser = () => {
+  return (req, res) => {
     const user = new User(req.body)
     user
       .save()
@@ -31,8 +31,8 @@ function createUser() {
   }
 }
 
-function updateUser() {
-  return function (req, res) {
+const updateUser = () => {
+  return (req, res) => {
     const { userId } = req.params
     const user = req.body
     User.findByIdAndUpdate(userId, user, {})
@@ -41,8 +41,8 @@ function updateUser() {
   }
 }
 
-function deleteUser() {
-  return function (req, res) {
+const deleteUser = () => {
+  return (req, res) => {
     const { userId } = req.params
     User.findByIdAndRemove(userId)
       .then(user => { res.status(200).json({success: true})})
