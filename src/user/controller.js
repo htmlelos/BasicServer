@@ -33,6 +33,7 @@ const createUser = () => {
 
 const updateUser = () => {
   return (req, res) => {
+    console.log('BODY>>', req.body)
     const { userId } = req.params
     const user = req.body
     User.findByIdAndUpdate(userId, user, {})
